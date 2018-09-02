@@ -1,0 +1,43 @@
+1. 
+
+var riderList = ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+function addRider(newRider){
+	riderList.push(newRider);
+	return riderList;
+}
+
+function findRider(riderName){
+	let riderPosition = riderList.indexOf(riderName);
+	if (riderPosition === -1){
+		return "No rider waiting by that name";
+	}
+	else return riderPosition;
+}
+
+function allowLinecut(newRider, existingRider){
+	let existingRiderPosition = findRider(existingRider);
+	riderList.splice(existingRiderPosition, 0, newRider);
+	return riderList;
+}
+
+function leaveLine(riderName){
+	let riderPosition = findRider(riderName);
+	riderList.splice(riderPosition, 1);
+	return riderList;
+	
+}
+
+b. addRider("Mary");
+c. findRider("Josh");
+d. findRider("Emily"); => returns no rider waiting by that name
+e. allowLinecut("Melissa", "Ava")
+f. leaveLine("Patrick");
+
+2. Provide another real-world example that you can model using a data structure.
+
+A: Taxonomy/family trees use a heirarchial data structure to organize species/children and to show the relatiosnhips between groups. 
+
+3. How would your data structure allow developers to access and manipulate the data?
+
+A: This would be similar to any NoSQL applications or a PC filesytem. Using the tree structure we can quickly locate an individual based on their ancestors and see where they are in context to the rest of the data. 
