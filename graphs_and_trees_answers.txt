@@ -1,0 +1,215 @@
+1. What is a binary tree and what makes it unique to other trees?
+
+A:  A collection of nodes arranged in a heirarchical structure. A binary tree node can only have up to two children.
+
+2. What is a heuristic?
+
+A: Guesses that an algorithm makes in order to speed up complex problems; there is a loss of accuracy.
+
+3. What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+A: I would think that search engines employ this technique, given that it is generally more important to get results quickly rather than a comprehensive search when using something like Google.
+
+4. What is the difference between a depth-first search and a breadth-first search?
+
+A: Depth-first will go to the very end of a node chain by always going to one specific child node. Breadth first will operate level by level and investigate the nodes only moving to the children of that particular level once it has ruled out all "equal depth" parents.
+
+5. Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+A: Undirected means that neither node is a start or end, you can travel freely in either direction between the nodes. An a-cyclic graph has a definitive end and does not loop. Unweighted means that there is no calculated cost of travel between two nodes.
+
+6. What kind of graph is a binary search tree?
+
+A: I think it could be weighted or not, undirected and a-cyclic.
+
+7. Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+A:
+/* the rule for this binary tree seems to be that if a child is smaller
+than the parent it goes to the left node, and if it is larger than the parent
+it goes to the right node. We simply must compare the value we are searching for
+to the parent node, if it is smaller than that node's value we move to the left
+child, if larger we move to right child and repeat the process until we find a match
+or run out of nodes to check. */
+
+class Node {
+  constructor(data){
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor(){
+    this.root = null;
+  }
+
+  contains(data){
+    var found = false;
+    var currentNode = this.root;
+    while(!found && currentNode){
+      if(data<currentNode.data){
+        currentNode = currentNode.left;
+      }
+      else if(data>currentNode.data){
+        currentNode = currentNode.right;
+      }
+      else found = true;
+    }
+    console.log(found);
+  }
+
+  addValue(data) {
+    var newNode = new Node(data);
+    if(this.root === null) {
+        this.root = newNode;
+        this.length++;
+    }
+    else {
+        this.addNode(this.root, newNode);
+    }
+  }
+
+  addNode(node, newNode){
+    if (newNode.data < node.data){
+        if (node.left === null){
+            node.left = newNode;
+            this.length++;
+        }
+        else {
+            this.addNode(node.left, newNode);
+        }
+      }
+    else {
+        if(node.right === null){
+            node.right = newNode;
+            this.length++;
+        }
+        else {
+            this.addNode(node.right, newNode);
+        }
+    }
+  }
+
+}
+var test = new BinarySearchTree();
+
+test.addValue(8);
+test.addValue(10);
+test.addValue(3);
+test.addValue(14);
+test.addValue(6);
+test.addValue(1);
+test.addValue(13);
+test.addValue(7);
+test.addValue(4);
+
+test.contains(10);
+test.contains(23);
+
+8. Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+A: The internet tells me the relevant formula to find the distance between two nodes is
+(distance between root and node 1) + (distance between root and node 2) - 2*(distance between root and lowest common ancestor)
+ 
+
+class Node {
+  constructor(data){
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor(){
+    this.root = null;
+  }
+
+  findDistance(root, n1, n2){
+    let LCA = this.commonAncestor(root, n1, n2);
+    let distance1 = this.countNodes(LCA, n1);
+    let distance2 = this.countNodes(LCA, n2);
+    let rootToLCA = this.countNodes(root, LCA);
+    let totalNodes = (distance1 + distance2) - (2 * rootToLCA);
+    console.log(totalNodes);
+  }
+
+  commonAncestor(root, n1, n2){
+    if(!root) return;
+    let LCA = root.data;
+    if(n1 === LCA || n2 === LCA){
+      return LCA;
+    }
+    if(n1 < LCA && n2 < LCA){
+      return this.commonAncestor(root.left, n1, n2);
+    }
+    if (n1 > LCA && n2 > LCA){
+      return this.commonAncestor(root.right, n1, n2);
+    }
+    return LCA;
+  }
+
+  countNodes(root, data) {
+    let currentNode = this.root;
+    let count = 0;
+    while (currentNode) {
+      if (data === currentNode.data){
+        return count;
+      }
+      currentNode = data < currentNode.data ? currentNode.left : currentNode.right;
+      count++;
+    }
+  }
+
+  getRoot(){
+    return this.root;
+  }
+
+  addValue(data) {
+    var newNode = new Node(data);
+    if(this.root === null) {
+        this.root = newNode;
+        this.length++;
+    }
+    else {
+        this.addNode(this.root, newNode);
+    }
+  }
+
+  addNode(node, newNode){
+    if (newNode.data < node.data){
+        if (node.left === null){
+            node.left = newNode;
+            this.length++;
+        }
+        else {
+            this.addNode(node.left, newNode);
+        }
+      }
+    else {
+        if(node.right === null){
+            node.right = newNode;
+            this.length++;
+        }
+        else {
+            this.addNode(node.right, newNode);
+        }
+    }
+  }
+
+}
+var test = new BinarySearchTree();
+
+test.addValue(8);
+test.addValue(10);
+test.addValue(3);
+test.addValue(14);
+test.addValue(6);
+test.addValue(1);
+test.addValue(13);
+test.addValue(7);
+test.addValue(4);
+var root = test.getRoot();
+test.findDistance(root, 4, 10);
