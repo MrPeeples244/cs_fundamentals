@@ -1,0 +1,96 @@
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+Making coffee;
+
+A:
+
+BEGIN FUNCTION brewCoffee
+  IF pot is not empty and clean
+    EMPTY pot
+    CLEAN pot
+  END IF
+  FILL pot with water
+  OPEN coffee maker lid
+  POUR pot contents into coffee maker
+  IF old filter and coffee grounds in filter holder
+    REMOVE old filter and coffee grounds
+  END IF
+  PLACE filter in filter holder
+  PLACE coffee in filter
+  CLOSE coffee maker lid
+  START brewing coffee
+  WHILE water remains in reservoir
+      CONTINUE brewing
+  END WHILE
+  POUR brewed coffee into clean mug
+END FUNCTION
+
+Washing dishes;
+
+A:
+
+BEGIN FUNCTION washDishes
+  OPEN dishwasher
+  IF dishwasher contains clean dishes
+    REMOVE clean dishes
+  END IF
+  IF dirty dishes need to be rinsed
+      RINSE dirty dishes
+  END IF
+  WHILE there are dirty dishes to clean
+    IF dirty dish is a glass or mug or plastic
+      PLACE dirty dish in top rack
+    END IF
+    IF dirty dish is a plate, silverware, pot, or pan
+      PLACE dirty dish in bottom rack
+    END IF
+  END WHILE
+  INSERT dishwasher soap into dishwasher
+  CLOSE dishwasher
+  RUN dishwasher
+END FUNCTION
+
+Changing Guitar Strings;
+
+A:
+
+BEGIN FUNCTION changeStrings
+  WHILE there is an old string on the guitar
+    UNWIND string with tuning peg to release tension
+    REMOVE string from tuning peg
+    REMOVE string from bridge tail piece
+    OPEN new string package
+    PLACE string into bridge tail piece and pull through
+    PLACE string into tuning peg
+    BEND string to hold it in place
+    WIND string with tuning peg
+    WHILE string is not in tune
+      IF string is flat
+        WIND string
+      END IF
+      IF string is sharp
+        UNWIND string
+      END IF
+    END WHILE
+  END WHILE
+  ROCK
+END FUNCTION
+
+2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to
+pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful,
+e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product).
+Google's algorithm produces more relevant results than other search engines; what about each of your cases make them
+stand out?
+
+A: While not necessarily a company, the Dept of Transportation is responsible for a lot of important algorithms when it comes to
+the rules of driving. Analyzing traffic signals, who's turn it is at a four way stop, etc. These are incredibly important
+because so many people use them everyday. Travelling on any airline also has a set of steps we all must follow in order;
+Get the ticket, check the luggage, go through security, check in, give boarding pass, board plane, etc. I would imagine that any
+music streaming service like Spotify or iTunes also employ algorithms in order to come up with suggested artists based on other
+artists that you like.
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+A: An efficient algorithm would seem to be one that doesn't increase the time required as you add more and more inputs into
+it too severely. An efficient algorithm won't get bogged down so easily as the data set increases. Loops within loops, recursion,
+and extraneous operations can all contribute to slowing an algorithm down. 
