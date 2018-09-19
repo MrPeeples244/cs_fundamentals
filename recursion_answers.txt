@@ -1,0 +1,58 @@
+1. Define and compare recursion and iteration.
+
+A: Recursion involves a function calling itself until certain base conditions are met. Iteration involves using loops.
+Recursive algorithms tend to be slower however, sometimes they are easier to implement than an iterative solution.
+
+2. Name five algorithms that are commonly implemented by recursion.
+
+A: Factorial, merge sort, Fibonacci, binary tree, quick sort.
+
+3. When should you use recursion, and when should you avoid recursion? Give examples for each.
+
+A: Recursion is useful when you have known base cases as opposed to running for an indeterminate number of cycles.
+Factorial and fibonacci always "get down to one" so they have a known base case, something like searching for a minimum
+value in an array with indeterminate entries would be better solved iteratively.
+
+4. Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and
+fibonacci). What is similar, and what is different?
+
+A: They all get the job completed, but I would imagine that the recursive versions will result in a longer runtime. The other big difference I notice
+is the readability; the recursive factorial example definitely is easier to understand at a glance than the iterative version.
+
+5. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive
+algorithm to count the number of items in the entire collection.
+
+A:
+var count = 0;
+
+function countElements (array) {
+  if (!Array.isArray(array)) {
+      count ++;
+  }
+  for (let i = 0; i < array.length; i++) {
+    countElements(array[i]);
+    }
+	return count;
+}
+
+6. A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive
+algorithm to determine if a given word or phrase is a palindrome.
+
+A:
+function isPalindrome(str) {
+    var strLen = str.length;
+    if (strLen === 0 || strLen === 1) {
+        return true;
+    }
+
+    if (str[0] === str[strLen - 1]) {
+        return isPalindrome( str.slice(1, strLen - 1) );
+    }
+
+    return false;
+}
+
+7. Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why
+this behavior exhibits properties of recursion.
+
+A: Because you've asked Google, and now Google is "calling" the same "function" again.  
