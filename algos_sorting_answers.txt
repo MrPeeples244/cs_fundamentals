@@ -1,0 +1,61 @@
+1. Write pseudocode for bubble sort.
+
+A:
+FUNCTION bubbleSort(collection)
+  REPEAT
+    SET swapped to FALSE
+    FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+      IF collection[i]>collection[i+1] THEN
+        SET temp to collection[i]
+        SET collection[i] to collection[i+1]
+        SET collection[i+1] to temp
+        SET swapped to true
+      END IF
+    END FOR
+  UNTIL swapped is FALSE
+  RETURN collection
+END FUNCTION
+
+2. Write pseudocode for quicksort.
+
+A:
+FUNCTION quickSort(collection, high, low)
+  IF low < high THEN
+    SET pivot to partition(collection, low, high)
+    CALL quickSort(collection, low, pivot)
+    CALL quickSort(collection, pivot + 1, high)
+  END IF
+
+FUNCTION partition(collection, low, high)
+  SET pivot to collection[low]
+  SET leftwall to low
+  FOR i = low + 1 to high
+        IF collection[i] < pivot THEN
+          SET swap to collection[i]
+          SET collection[i] = collection[leftwall+1]
+          SET collection[leftwall + 1] = swap
+          INCREMENT leftwall
+        END IF
+  END FOR
+  SET swap to pivot
+  SET pivot to collection[leftwall]
+  SET collection[leftwall] to swap
+  RETURN leftwall
+END FUNCTION
+
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm.
+After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more
+efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+A: Both merge and quick sort have a "better" worst case scenario time complexity; something like a bubble sort
+could take multiple passes through the data to finish the task.
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it
+works. What is the ideal input for bucket sort?
+
+A: A bucket sort works by dumping values from the collection into buckets of similar values, and then sorting those
+buckets. An example of this could be if you have a room of people and want to sort them by age. First we could divide
+everyone up like so 0-9 yrs, 10-19 yrs, 20-29 yrs, etc. Then those groups would arrange themselves in proper age order.
+When we combine all the buckets back together we will have all the people sorted properly by age. The best case input
+for a bucket sort is when the data can be distributed across the buckets evenly.
