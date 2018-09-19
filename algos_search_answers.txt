@@ -1,0 +1,59 @@
+1. What is a real-life scenario that uses linear search?
+
+A: Going through a stack of unsorted record albums until you find the one you want.
+
+2. What is a real-life scenario that uses binary search?
+
+A: The classic phonebook example isn't perfectly binary because we don't always go to the exact middle of the stack of pages but the idea of omitting a
+chunk of the data holds up.
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+
+A: 7
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+
+A: 3
+
+5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+A: Binary search requires a sorted dataset so this would have to be linear.
+
+6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+A: Binary because it is way faster and the dataset is sorted.
+
+7: You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+A: For this specific case a linear search might actually be faster but assuming we might want to look up other words this binary solution will prevail.
+function dictionarySearch(array, word) {
+  var low = array[0];
+  var high = array[array.length - 1];
+
+  while (low <= high) {
+    var mid = (array.indexOf(low) + array.indexOf(high)) / 2;
+    mid = Math.round(mid);
+
+    if (array[mid] > word) {
+      high = array[mid - 1];
+    } else if (array[mid] < word) {
+      low = array[mid + 1];
+    } else {
+      return array[mid];
+    }
+  }
+}
+
+
+8: You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net
+the right fish.
+
+A: This linear solution assumes that we can keep track of the fish we've tried/move the ones that don't match to a separate tank, and that the spotted
+fish exists since we can see him in the tank.
+function getSpottedFish(fishList, spottedFish){
+  for(let i=0; i<fishList.length; i++){
+    if(fishList[i]==spottedFish){
+      return spottedFish
+    }
+  }
+}
